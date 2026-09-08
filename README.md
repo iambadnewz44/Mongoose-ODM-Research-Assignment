@@ -1,12 +1,10 @@
 # Screenshots
 
-Add screenshots here after running the React project.
+After running the project, you can add screenshots here.
 
 Suggested screenshots:
-1. Main product list
-2. Search/filter interaction
-3. Optimization notes loaded through code splitting
-4. Mobile responsive view
-5. React Developer Tools Profiler showing a recorded interaction
-
-Do not claim a profiler screenshot unless you actually recorded it.
+1. Main TaskFlow page
+2. Adding a new task
+3. Completed task state
+4. Active/completed filters
+5. Mobile responsive view

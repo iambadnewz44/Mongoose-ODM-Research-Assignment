@@ -1,113 +1,92 @@
-import React, { Suspense, useCallback, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
+import Header from "./components/Header";
+import TaskForm from "./components/TaskForm";
+import TaskList from "./components/TaskList";
+import Stats from "./components/Stats";
 
-const PerformanceDetails = React.lazy(() => import("./components/PerformanceDetails"));
-
-const products = Array.from({ length: 80 }, (_, index) => ({
-  id: index + 1,
-  name: `Product ${index + 1}`,
-  category: ["Technology", "Books", "Fitness", "Home"][index % 4],
-  price: 20 + ((index * 17) % 180)
-}));
-
-const ProductCard = React.memo(function ProductCard({ product, onSelect }) {
-  const [renders, setRenders] = useState(0);
-
-  React.useEffect(() => {
-    setRenders(value => value + 1);
-  }, []);
-
-  return (
-    <article className="card">
-      <span className="category">{product.category}</span>
-      <h3>{product.name}</h3>
-      <p className="price">${product.price}</p>
-      <small>Memoized component</small>
-      <button onClick={() => onSelect(product)}>View product</button>
-      <div className="render-count">Mounted renders: {renders}</div>
-    </article>
-  );
-});
+const initialTasks = [
+  { id: 1, title: "Learn React components", category: "Learning", completed: true },
+  { id: 2, title: "Practice props and data flow", category: "Learning", completed: false },
+  { id: 3, title: "Build a responsive UI", category: "Project", completed: false },
+  { id: 4, title: "Review JavaScript basics", category: "Study", completed: false }
+];
 
 export default function App() {
-  const [search, setSearch] = useState("");
-  const [sortLow, setSortLow] = useState(true);
-  const [selected, setSelected] = useState(null);
-  const [showDetails, setShowDetails] = useState(false);
+  const [tasks, setTasks] = useState(initialTasks);
+  const [filter, setFilter] = useState("all");
 
-  const filteredProducts = useMemo(() => {
-    const result = products.filter(product =>
-      `${product.name} ${product.category}`
-        .toLowerCase()
-        .includes(search.toLowerCase())
+  const visibleTasks = useMemo(() => {
+    if (filter === "active") return tasks.filter(task => !task.completed);
+    if (filter === "completed") return tasks.filter(task => task.completed);
+    return tasks;
+  }, [tasks, filter]);
+
+  function addTask(title, category) {
+    const newTask = {
+      id: Date.now(),
+      title,
+      category,
+      completed: false
+    };
+    setTasks(current => [newTask, ...current]);
+  }
+
+  function toggleTask(id) {
+    setTasks(current =>
+      current.map(task =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      )
     );
+  }
 
-    return [...result].sort((a, b) =>
-      sortLow ? a.price - b.price : b.price - a.price
-    );
-  }, [search, sortLow]);
-
-  const handleSelect = useCallback((product) => {
-    setSelected(product);
-  }, []);
+  function deleteTask(id) {
+    setTasks(current => current.filter(task => task.id !== id));
+  }
 
   return (
-    <main className="container">
-      <header className="hero">
-        <p className="eyebrow">React Performance Optimization</p>
-        <h1>Faster React, better user experience.</h1>
-        <p>
-          A practical demonstration of code splitting, memoization,
-          React.memo, useMemo and useCallback.
-        </p>
-      </header>
-
-      <section className="panel">
-        <div className="controls">
-          <input
-            aria-label="Search products"
-            value={search}
-            onChange={event => setSearch(event.target.value)}
-            placeholder="Search products..."
-          />
-          <button onClick={() => setSortLow(value => !value)}>
-            Sort: {sortLow ? "Low → High" : "High → Low"}
-          </button>
-          <button onClick={() => setShowDetails(value => !value)}>
-            {showDetails ? "Hide" : "Show"} optimization notes
-          </button>
-        </div>
-
-        {showDetails && (
-          <Suspense fallback={<p>Loading optimization notes...</p>}>
-            <PerformanceDetails />
-          </Suspense>
-        )}
-
-        {selected && (
-          <div className="selected">
-            <strong>Selected:</strong> {selected.name} — ${selected.price}
-            <button onClick={() => setSelected(null)}>Close</button>
+    <div className="app">
+      <Header />
+      <main className="container">
+        <section className="hero">
+          <div>
+            <p className="eyebrow">React App Project</p>
+            <h1>TaskFlow</h1>
+            <p>
+              A functional task manager demonstrating React components,
+              props, state, and parent-to-child data flow.
+            </p>
           </div>
-        )}
+        </section>
 
-        <p className="result-count">
-          Showing {filteredProducts.length} of {products.length} products
-        </p>
+        <Stats tasks={tasks} />
 
-        <div className="grid">
-          {filteredProducts.map(product => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              onSelect={handleSelect}
-            />
-          ))}
-        </div>
-      </section>
+        <section className="workspace">
+          <TaskForm onAddTask={addTask} />
 
-      <footer>
-        <p>Performance assignment demo • Built with React and Vite</p>
-      </footer>
-    </main>
+          <div className="list-header">
+            <h2>My Tasks</h2>
+            <div className="filters">
+              {["all", "active", "completed"].map(option => (
+                <button
+                  key={option}
+                  className={filter === option ? "filter active" : "filter"}
+                  onClick={() => setFilter(option)}
+                >
+                  {option[0].toUpperCase() + option.slice(1)}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <TaskList
+            tasks={visibleTasks}
+            onToggle={toggleTask}
+            onDelete={deleteTask}
+          />
+        </section>
+      </main>
+
+      <footer>TaskFlow • React Components & Data Flow Project</footer>
+    </div>
   );
 }
