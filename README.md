@@ -1,15 +1,12 @@
 # Screenshots
 
-Run `index.html` in a browser.
+Add screenshots here after running the React project.
 
-Recommended screenshots:
-1. Desktop home page
-2. Projects section
-3. Contact form after submitting
-4. Mobile/responsive view
+Suggested screenshots:
+1. Main product list
+2. Search/filter interaction
+3. Optimization notes loaded through code splitting
+4. Mobile responsive view
+5. React Developer Tools Profiler showing a recorded interaction
 
-Suggested filenames:
-- desktop-home.png
-- projects.png
-- contact-form.png
-- mobile-view.png
+Do not claim a profiler screenshot unless you actually recorded it.

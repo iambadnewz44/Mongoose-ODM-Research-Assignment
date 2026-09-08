@@ -1,8 +1,18 @@
 {
-  "name": "frontend-development-project",
+  "name": "react-performance-optimization-assignment",
+  "private": true,
   "version": "1.0.0",
-  "description": "Responsive personal portfolio using HTML, CSS and JavaScript",
+  "type": "module",
   "scripts": {
-    "start": "npx serve ."
-  }
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "vite": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {}
 }
