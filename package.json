@@ -1,17 +1,14 @@
 {
-  "name": "rest-api-weather-assignment",
-  "private": true,
+  "name": "api-authentication-assignment",
   "version": "1.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
   },
   "dependencies": {
-    "@vitejs/plugin-react": "latest",
-    "vite": "latest",
-    "react": "latest",
-    "react-dom": "latest"
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2"
   }
 }
