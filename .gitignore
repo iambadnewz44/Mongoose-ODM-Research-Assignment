@@ -1,6 +1,5 @@
-# MongoDB project
+node_modules/
 .env
 *.log
-node_modules/
 .DS_Store
 Thumbs.db

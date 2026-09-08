@@ -1,24 +1,26 @@
 # Screenshots
 
-Add screenshots of your MongoDB work here if your instructor requires them.
+If your instructor requires screenshots, add screenshots here after running the API.
 
 Recommended screenshots:
 
-1. MongoDB shell showing `use libraryDB`
-2. `show collections`
-3. Authors inserted successfully
-4. Books inserted successfully
-5. A CRUD operation
-6. A search query and its result
-7. An aggregation query and its result
+1. Server running in the terminal
+2. `GET /api/books`
+3. `GET /api/books/1`
+4. Search request using `?genre=Fantasy`
+5. POST request creating a book
+6. PUT request updating a book
+7. DELETE request
+8. 404/error response
 
 Suggested filenames:
 
-- `database_created.png`
-- `collections.png`
-- `insert_books.png`
-- `crud_operations.png`
-- `search_queries.png`
-- `aggregation.png`
+- `server-running.png`
+- `get-books.png`
+- `get-book.png`
+- `search.png`
+- `post-book.png`
+- `put-book.png`
+- `delete-book.png`
 
-Do not upload passwords, connection strings containing credentials, API keys, or other private information.
+Do not include API keys, passwords, database credentials, or other private information.
