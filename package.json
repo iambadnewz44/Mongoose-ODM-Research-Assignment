@@ -1,18 +1,8 @@
 {
-  "name": "express-library-api",
+  "name": "frontend-development-project",
   "version": "1.0.0",
-  "description": "Express.js Complete Assignment - Library REST API",
-  "main": "server.js",
+  "description": "Responsive personal portfolio using HTML, CSS and JavaScript",
   "scripts": {
-    "start": "node server.js"
-  },
-  "keywords": [
-    "express",
-    "nodejs",
-    "rest-api"
-  ],
-  "license": "ISC",
-  "dependencies": {
-    "express": "^5.1.0"
+    "start": "npx serve ."
   }
 }
