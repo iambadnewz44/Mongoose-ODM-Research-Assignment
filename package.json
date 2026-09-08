@@ -1,20 +1,19 @@
 {
-  "name": "nodejs-express-chat-demo",
+  "name": "react-interactive-todo",
+  "private": true,
   "version": "1.0.0",
-  "description": "Simple real-time chat demo using Express, Socket.io, MongoDB and Mocha/Chai",
-  "main": "src/server.js",
+  "type": "module",
   "scripts": {
-    "start": "node src/server.js",
-    "test": "mocha --exit"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "dotenv": "^16.0.0",
-    "express": "^5.0.0",
-    "mongodb": "^6.0.0",
-    "socket.io": "^4.0.0"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "chai": "^5.0.0",
-    "mocha": "^11.0.0"
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.4.8"
   }
 }

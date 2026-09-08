@@ -1,23 +1,32 @@
-# Node.js Express Real-Time Chat Demo
+# React Interactive Todo List
+
+A simple React project demonstrating components, state management, state changes, and props.
 
 ## Features
-- Express web server
-- Socket.io real-time chat
-- Optional MongoDB message persistence
-- Mocha + Chai automated tests
-- Simple browser interface
+- Add todo items
+- List todo items
+- Mark tasks complete/incomplete
+- Delete todo items
+- Reusable React components
+- Responsive interface
 
-## Run
+## Component structure
+- `App` owns the todo state.
+- `TodoForm` owns the input field state and receives `onAddTodo` as a prop.
+- `TodoList` receives the todo array and callback props.
+- `TodoItem` receives one todo and callback props.
+
+## Run locally
+
 ```bash
 npm install
-npm test
-npm start
+npm run dev
 ```
 
-Open `http://localhost:3000`.
+Open the local URL shown by Vite in your browser.
 
-## MongoDB
-Copy `.env.example` to `.env` and set `MONGODB_URI` to enable persistence.
+## Build for production
 
-## GitHub submission
-Create a GitHub repository, push this project, create a feature branch, and open a pull request. Submit the repository URL with the assignment.
+```bash
+npm run build
+```
