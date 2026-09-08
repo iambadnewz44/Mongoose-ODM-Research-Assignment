@@ -1,32 +1,24 @@
-# React Interactive Todo List
+# Screenshots
 
-A simple React project demonstrating components, state management, state changes, and props.
+Add screenshots of your MongoDB work here if your instructor requires them.
 
-## Features
-- Add todo items
-- List todo items
-- Mark tasks complete/incomplete
-- Delete todo items
-- Reusable React components
-- Responsive interface
+Recommended screenshots:
 
-## Component structure
-- `App` owns the todo state.
-- `TodoForm` owns the input field state and receives `onAddTodo` as a prop.
-- `TodoList` receives the todo array and callback props.
-- `TodoItem` receives one todo and callback props.
+1. MongoDB shell showing `use libraryDB`
+2. `show collections`
+3. Authors inserted successfully
+4. Books inserted successfully
+5. A CRUD operation
+6. A search query and its result
+7. An aggregation query and its result
 
-## Run locally
+Suggested filenames:
 
-```bash
-npm install
-npm run dev
-```
+- `database_created.png`
+- `collections.png`
+- `insert_books.png`
+- `crud_operations.png`
+- `search_queries.png`
+- `aggregation.png`
 
-Open the local URL shown by Vite in your browser.
-
-## Build for production
-
-```bash
-npm run build
-```
+Do not upload passwords, connection strings containing credentials, API keys, or other private information.

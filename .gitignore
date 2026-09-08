@@ -1,4 +1,6 @@
-node_modules
-dist
+# MongoDB project
 .env
+*.log
+node_modules/
 .DS_Store
+Thumbs.db
