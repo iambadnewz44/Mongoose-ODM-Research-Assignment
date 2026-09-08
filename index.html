@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Node.js Real-Time Chat</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 700px; margin: 40px auto; padding: 0 16px; }
+    #messages { border: 1px solid #ccc; min-height: 300px; padding: 12px; list-style: none; }
+    form { display: flex; gap: 8px; margin-top: 12px; }
+    input { padding: 10px; }
+    #text { flex: 1; }
+    button { padding: 10px 16px; }
+  </style>
+</head>
+<body>
+  <h1>Real-Time Chat</h1>
+  <p>Open this page in two browser windows to see real-time messages.</p>
+  <ul id="messages"></ul>
+  <form id="form">
+    <input id="username" placeholder="Your name" required>
+    <input id="text" placeholder="Message" required maxlength="500">
+    <button>Send</button>
+  </form>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+    const messages = document.getElementById("messages");
+    const form = document.getElementById("form");
+
+    function addMessage(message) {
+      const li = document.createElement("li");
+      li.textContent = `${message.username}: ${message.text}`;
+      messages.appendChild(li);
+    }
+
+    socket.on("chatHistory", history => history.forEach(addMessage));
+    socket.on("chatMessage", addMessage);
+
+    form.addEventListener("submit", event => {
+      event.preventDefault();
+      const username = document.getElementById("username").value;
+      const text = document.getElementById("text").value;
+
+      socket.emit("chatMessage", { username, text }, response => {
+        if (!response.ok) alert(response.error);
+        else document.getElementById("text").value = "";
+      });
+    });
+  </script>
+</body>
+</html>
